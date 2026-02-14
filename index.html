@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Anita ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.container{
+max-width:700px;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+margin-top:20px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.next{
+background:white;
+color:#ff4d6d;
+}
+
+.yes{background:#4CAF50;color:white;}
+.no{background:#f44336;color:white;}
+
+.heart{
+position:absolute;
+font-size:30px;
+animation:float 4s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-800px);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="app"></div>
+
+<script>
+
+const texts = [
+
+`Our destinies are tied together.
+Finding you… finally finding you… was fate.
+I feel like I was searching for you my whole life.`,
+
+`Falling in love was my heart’s decision,
+but loving you… truly loving you… is beyond my control.`,
+
+`You are the most beautiful poem, story, and girl in this world.
+You are the kindest and most important person in my life.`,
+
+`We are meant to stay together forever.
+Until the end of our lives we will have each other.`,
+
+`When we are together we feel happy, calm and safe.
+This is our story… and it is special… just like me and you.`,
+
+`Anita my love…
+I love you endlessly.`,
+
+`When I held your hands I understood why there is space between my fingers…
+It was made to be filled by yours.`,
+
+`If my heart could speak it would say:
+I belong to you Anita.`,
+
+`Wherever I go… I wish you were there with me.
+I want you in my arms all the time.`,
+
+`You are the most beautiful person to me.
+You feel perfect to me.
+I love you Anita ❤️`
+];
+
+let index = 0;
+const app = document.getElementById("app");
+
+function showText(){
+app.innerHTML = `
+<h2>${texts[index]}</h2>
+<button class="next" onclick="nextText()">Next ❤️</button>
+`;
+}
+
+function nextText(){
+index++;
+if(index < texts.length){
+showText();
+}else{
+showValentine();
+}
+}
+
+function showValentine(){
+app.innerHTML = `
+<h1>Will you be my Valentine? ❤️</h1>
+<button class="yes" id="yesBtn">Yes</button>
+<button class="no" id="noBtn">No</button>
+`;
+
+let yesSize = 1;
+let noSize = 1;
+
+document.getElementById("noBtn").onclick = ()=>{
+yesSize += 0.2;
+noSize -= 0.2;
+
+document.getElementById("yesBtn").style.transform=`scale(${yesSize})`;
+document.getElementById("noBtn").style.transform=`scale(${noSize})`;
+
+if(noSize<=0.2){
+document.getElementById("noBtn").style.display="none";
+}
+}
+
+document.getElementById("yesBtn").onclick = showApology;
+}
+
+function showApology(){
+app.innerHTML = `
+<h2>
+I need to tell you something… ❤️<br><br>
+I used inspiration from another project to create this Valentine surprise.<br>
+I hope you forgive me… I only wanted to make you smile.
+</h2>
+
+<button class="yes" id="forgive">Forgive Me ❤️</button>
+<button class="no" id="notForgive">Don't Forgive</button>
+`;
+
+let fSize=1;
+let nfSize=1;
+
+document.getElementById("notForgive").onclick = ()=>{
+fSize +=0.2;
+nfSize -=0.2;
+
+document.getElementById("forgive").style.transform=`scale(${fSize})`;
+document.getElementById("notForgive").style.transform=`scale(${nfSize})`;
+
+if(nfSize<=0.2){
+document.getElementById("notForgive").style.display="none";
+}
+}
+
+document.getElementById("forgive").onclick = finalMessage;
+}
+
+function finalMessage(){
+app.innerHTML = `<h1>Anita… عاشقتم ❤️</h1>`;
+createHearts();
+}
+
+function createHearts(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*window.innerWidth+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),4000);
+},300);
+}
+
+showText();
+
+</script>
+
+</body>
+</html>
